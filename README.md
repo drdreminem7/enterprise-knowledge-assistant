@@ -6,6 +6,8 @@ It was built as an AI engineering portfolio project, so the focus is less on pro
 
 Authentication is intentionally not part of the current milestone. This is the "make the RAG flow work well and be easy to explain" version first.
 
+![Demo walkthrough](docs/screenshots/demo-walkthrough.gif)
+
 ## What works today
 
 - Create and switch between knowledge bases
@@ -80,7 +82,7 @@ When a file is uploaded, the backend:
 
 If something fails during extraction or indexing, the document is marked as `failed`.
 
-The upload endpoint is in [backend/app/api/endpoints/documents.py](/Users/harryalta/Desktop/EnterpriseAssistant/backend/app/api/endpoints/documents.py), and the indexing logic lives in [backend/app/services/ingestion.py](/Users/harryalta/Desktop/EnterpriseAssistant/backend/app/services/ingestion.py).
+The upload endpoint is in [backend/app/api/endpoints/documents.py](backend/app/api/endpoints/documents.py), and the indexing logic lives in [backend/app/services/ingestion.py](backend/app/services/ingestion.py).
 
 ## How retrieval works
 
@@ -98,7 +100,7 @@ The backend does not search the entire database blindly. It does this instead:
 
 That means the model never receives "all company knowledge". It only receives a small retrieved context window for the current question.
 
-The main retrieval logic is in [backend/app/services/rag_pipeline.py](/Users/harryalta/Desktop/EnterpriseAssistant/backend/app/services/rag_pipeline.py).
+The main retrieval logic is in [backend/app/services/rag_pipeline.py](backend/app/services/rag_pipeline.py).
 
 ## How answer generation works
 
@@ -117,7 +119,7 @@ The project currently uses Gemini for:
 - follow-up query rewriting
 - embeddings (`gemini-embedding-001`)
 
-Model calls are wrapped in [backend/app/services/llm_client.py](/Users/harryalta/Desktop/EnterpriseAssistant/backend/app/services/llm_client.py).
+Model calls are wrapped in [backend/app/services/llm_client.py](backend/app/services/llm_client.py).
 
 ## How citations work
 
@@ -146,7 +148,7 @@ This project includes endpoints for:
 
 The demo seed now includes a 10-question evaluation set built around the sample HR policy document.
 
-The evaluation endpoints live in [backend/app/api/endpoints/evaluation.py](/Users/harryalta/Desktop/EnterpriseAssistant/backend/app/api/endpoints/evaluation.py).
+The evaluation endpoints live in [backend/app/api/endpoints/evaluation.py](backend/app/api/endpoints/evaluation.py).
 
 ## Tech stack
 
@@ -191,12 +193,12 @@ enterprise-knowledge-assistant/
 
 ## Screenshots
 
-Current demo screenshots live in [docs/screenshots/README.md](/Users/harryalta/Desktop/EnterpriseAssistant/docs/screenshots/README.md).
+Current demo screenshots live in [docs/screenshots/README.md](docs/screenshots/README.md).
 
-- [Chat overview](/Users/harryalta/Desktop/EnterpriseAssistant/docs/screenshots/chat-overview.png)
-- [Retrieved sources panel](/Users/harryalta/Desktop/EnterpriseAssistant/docs/screenshots/sources-panel.png)
-- [Sidebar workspace state](/Users/harryalta/Desktop/EnterpriseAssistant/docs/screenshots/sidebar-workspace.png)
-- [Short demo GIF](/Users/harryalta/Desktop/EnterpriseAssistant/docs/screenshots/demo-walkthrough.gif)
+- [Chat overview](docs/screenshots/chat-overview.png)
+- [Retrieved sources panel](docs/screenshots/sources-panel.png)
+- [Sidebar workspace state](docs/screenshots/sidebar-workspace.png)
+- [Short demo GIF](docs/screenshots/demo-walkthrough.gif)
 
 ## Local setup
 
@@ -271,9 +273,9 @@ http://127.0.0.1:5173
 
 The repository now includes:
 
-- [docker-compose.yml](/Users/harryalta/Desktop/EnterpriseAssistant/docker-compose.yml)
-- [backend/Dockerfile](/Users/harryalta/Desktop/EnterpriseAssistant/backend/Dockerfile)
-- [frontend/Dockerfile](/Users/harryalta/Desktop/EnterpriseAssistant/frontend/Dockerfile)
+- [docker-compose.yml](docker-compose.yml)
+- [backend/Dockerfile](backend/Dockerfile)
+- [frontend/Dockerfile](frontend/Dockerfile)
 
 To run the full stack with Docker:
 
@@ -338,7 +340,7 @@ The important variables are:
 - `VITE_API_BASE_URL`
   - backend URL baked into the frontend at build time
 
-The full example lives in [.env.example](/Users/harryalta/Desktop/EnterpriseAssistant/.env.example).
+The full example lives in [.env.example](.env.example).
 
 ## Main API routes
 
@@ -365,7 +367,7 @@ Useful examples:
 If you just want to see the project working end to end:
 
 1. Create a knowledge base, for example `HR Demo`
-2. Upload [demo/hr_policy_demo.txt](/Users/harryalta/Desktop/EnterpriseAssistant/demo/hr_policy_demo.txt)
+2. Upload [demo/hr_policy_demo.txt](demo/hr_policy_demo.txt)
 3. Open the chat UI
 4. Ask something simple like:
    - `What is the remote work policy?`
@@ -375,7 +377,7 @@ If you just want to see the project working end to end:
 7. Mark the answer as useful or not useful
 8. Open analytics and evaluation views to inspect the demo state
 
-There is also a small demo walkthrough in [demo/README.md](/Users/harryalta/Desktop/EnterpriseAssistant/demo/README.md).
+There is also a small demo walkthrough in [demo/README.md](demo/README.md).
 
 ## Current limitations
 
