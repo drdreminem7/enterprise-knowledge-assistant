@@ -1,0 +1,56 @@
+services:
+    db:
+        image: pgvector/pgvector:pg16
+        environment:
+            POSTGRES_DB: ${POSTGRES_DB:-enterprise_assistant}
+            POSTGRES_USER: ${POSTGRES_USER:-postgres}
+            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+        ports:
+            - "5432:5432"
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+        healthcheck:
+            test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-enterprise_assistant}"]
+            interval: 10s
+            timeout: 5s
+            retries: 5
+
+    backend:
+        build:
+            context: .
+            dockerfile: backend/Dockerfile
+        env_file:
+            - .env
+        environment:
+            DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@db:5432/${POSTGRES_DB:-enterprise_assistant}
+            POSTGRES_DB: ${POSTGRES_DB:-enterprise_assistant}
+            POSTGRES_USER: ${POSTGRES_USER:-postgres}
+            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+            POSTGRES_HOST: db
+            POSTGRES_PORT: 5432
+            UPLOAD_DIR: /app/backend/uploads
+            APP_HOST: 0.0.0.0
+            APP_PORT: 8000
+        ports:
+            - "8000:8000"
+        volumes:
+            - backend_uploads:/app/backend/uploads
+        depends_on:
+            db:
+                condition: service_healthy
+
+    frontend:
+        build:
+            context: .
+            dockerfile: frontend/Dockerfile
+            args:
+                VITE_API_BASE_URL: ${VITE_API_BASE_URL:-http://localhost:8000/api}
+        ports:
+            - "5173:80"
+        depends_on:
+            backend:
+                condition: service_started
+
+volumes:
+    postgres_data:
+    backend_uploads:

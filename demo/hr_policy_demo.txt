@@ -1,0 +1,18 @@
+Remote Work Policy
+
+Employees may work remotely up to three days per week with manager approval.
+All employees must remain reachable during core working hours from 10:00 to 16:00.
+Sensitive company data must only be accessed on approved devices with disk encryption enabled.
+
+Expense Reimbursement Policy
+
+Employees can submit travel and meal expenses within 30 days of purchase.
+All reimbursements require an itemized receipt.
+Manager approval is required for any single expense above 200 EUR.
+
+Information Security Policy
+
+Passwords must be at least 12 characters long and should not be reused across services.
+Multi-factor authentication is required for all company accounts.
+Security incidents must be reported to the IT team within one hour of discovery.
+
